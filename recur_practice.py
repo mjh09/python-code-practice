@@ -26,7 +26,8 @@ def fibonacci(n):
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 
-
+# sometime called gaurdian, the first two conditioals protect
+# the code from values that might cause an error
 def factorial(n):
     if not isinstance(n,int):
         print("factorial funct is only defined for integers")
