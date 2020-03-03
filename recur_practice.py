@@ -25,3 +25,15 @@ def fibonacci(n):
         return 1
     else:
         return fibonacci(n-1) + fibonacci(n-2)
+
+
+def factorial(n):
+    if not isinstance(n,int):
+        print("factorial funct is only defined for integers")
+        return None
+    elif n < 0:
+        print(" factorial funct is not defined for negative integers")
+    elif n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
