@@ -26,7 +26,8 @@ def fibonacci(n):
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 
-
+# sometime called gaurdian, the first two conditioals protect
+# the code from values that might cause an error
 def factorial(n):
     if not isinstance(n,int):
         print("factorial funct is only defined for integers")
@@ -37,3 +38,17 @@ def factorial(n):
         return 1
     else:
         return n * factorial(n-1)
+
+# checking flow of execution and debugging:
+def factorial(n):
+    space = " " * (4 * n)
+    print(space, 'factorial', n)
+    if n == 0:
+        print(space, 'returning 1')
+        return 1
+    else:
+        recurse = factorial(n-1)
+        result = n * recurse
+        print(space, 'returning', result)
+        return result
+        
