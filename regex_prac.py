@@ -14,3 +14,14 @@ def swapAdjacentWords(s):
     return re.sub(r'(\w+)(\W+)(\w+)', r'\3\2\1', s)
     
 swapAdjacentWords(sent)
+
+
+
+# no idea
+sent = "8one 003number 201numbers li-000233le number444"
+n = 4
+def nthNumber(s, n):
+    pattern = "\D*(?:\d+\D+){" + str(n-1) + "}0*(\d+)"
+    return re.match(pattern, s).group(1)
+nthNumber(sent,n)
+#233
