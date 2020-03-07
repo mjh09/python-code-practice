@@ -84,6 +84,7 @@ def con(matr):
         if f is 0:
           #print("no connections found, create new region")
           region_dict[cnt] = seg_idx
+          new_last_segs[cnt] = seg_idx
           cnt+=1
       
       last_segs = new_last_segs
