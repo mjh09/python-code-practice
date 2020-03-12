@@ -2,7 +2,9 @@ import math
 ### steps
 numbers = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-# find median -> Q2
+## find median -> Q2
+
+# Length is odd
 if len(numbers) % 2:
     med = math.ceil(len(numbers)/2)
     #med = numbers[med]
@@ -27,13 +29,23 @@ if len(numbers) % 2:
         print(f'Q1 = {Qone_median}, Q3 = {Qthree_median}')
         IQR = Qthree_median - Qone_median
         print(f'IQR = {IQR}')
-else:
-    half = int(len(numbers)/2)
-    first = numbers[:half]
-    second = numbers[half:]
-    print(first, second)
 
+# Length is even
+else:
+    
+    # split point
+    half = int(len(numbers)/2)
+    
+    # everything up to Q2
+    first = numbers[:half]
+    # everything after Q2
+    second = numbers[half:]
+    print(f'start Q1 to end Q2 {first}, start Q3 to end Q4{second}')
+
+    # splits are odd : [1,2,3]<[3.5]>[4,5,6] from [1,2,3,4,5,6]
     if len(first) % 2:
+        
+        # mid point 
         med = len(first) // 2
         Qone = first[med]
         Qthree = second[med]
