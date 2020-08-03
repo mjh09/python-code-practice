@@ -1,66 +1,48 @@
-# still needs work, permutation function from itertools
-# 
+#### Given a string, find out if its characters can be rearranged to form a palindrome.
 def palindromeRearranging(inputString):
+  '''Returns boolean value for whether or not a string of lowercase letters
+    can be rearranged to form a palindrome. noqa.
 
+    Parameters:
+      inputString (str) : s string of lowercase letters
+
+    Returns:
+      Bool : True/False
+  '''
+  inp_len = len(inputString)
   
-  def isPali(permutationString):
-    '''check is palindrome: even/odds'''
+  if inp_len < 1:
+    return False
+
+  chr_cnt = {}
+
+  for chr in set(inputString):
+    chr_cnt[chr] = inputString.count(chr)
+
+
+  # Even string length
+  if inp_len % 2 == 0:
     
-    str_len = len(permutationString)
-    
-    # check for length of zero
-    if str_len is 0:
+    odd_cnt = 0
+    for chr in chr_cnt.keys():
+      if chr_cnt[chr] %2 != 0:
+        odd_cnt += 1
+
+    if odd_cnt > 0: # in an even length string, one odd character count is disqualifying 
       return False
-
-    # even
-    elif str_len % 2 is 0:
-      mid = str_len // 2
-      split_front = permutationString[:mid]
-      split_back = permutationString[mid:]
-
-    # odd
-    elif str_len % 2 is not 0:
-      mid = str_len // 2
-      split_front = permutationString[:mid]
-      split_back = permutationString[mid+1:]
-
-    split_back_reverse = list(reversed(split_back))
-    split_front_list = list(split_front)
-
-    return split_back_reverse == split_front_list
-
-
-  # get all possible permutations
-  def permutations(iterable, r=None):
-    # permutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC
-    # permutations(range(3)) --> 012 021 102 120 201 210
-    pool = tuple(iterable)
-    n = len(pool)
-    r = n if r is None else r
-    if r > n:
-        return
-    indices = list(range(n))
-    cycles = list(range(n, n-r, -1))
-    yield tuple(pool[i] for i in indices[:r])
-    while n:
-        for i in reversed(range(r)):
-            cycles[i] -= 1
-            if cycles[i] == 0:
-                indices[i:] = indices[i+1:] + indices[i:i+1]
-                cycles[i] = n - i
-            else:
-                j = cycles[i]
-                indices[i], indices[-j] = indices[-j], indices[i]
-                yield tuple(pool[i] for i in indices[:r])
-                break
-        else:
-            return
-
-  possible_aggregate = list(permutations(inputString))
-
-  for possible in possible_aggregate:
-    possible = "".join(possible)
-    if isPali(possible):
+    
+    else:
       return True
   
-  return False
+  # Odd string length
+  else: 
+    odd_cnt = 0
+    for cnt in chr_cnt.values():
+      if cnt % 2 != 0:
+        odd_cnt +=1
+
+    if odd_cnt > 1: # in an odd length string, more that one odd character is disqualifying
+      return False
+    
+    else:
+      return True
